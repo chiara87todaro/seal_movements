@@ -9,8 +9,7 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-
-```{r libraries}
+```{r libraries,message=FALSE}
 rm(list = ls())
 library(plotly);library(ggplot2);library(dplyr)
 ```
@@ -36,23 +35,23 @@ Basically it's the vector field representation of seal movements in the Pacific 
 measurements are taken. 
 * The **delta_long** and **delta_lat** variables represent the x and y components of the displacement vector.
 
-## Vector field
+<!-- ## Vector field -->
 
-```{r vector_field,results='asis',message=FALSE,warning=FALSE,fig.height=5,fig.width=5}
-geo1 <- list(scope = 'north america', projection = list(type = 'natural earth'),
-   showland = TRUE,landcolor = toRGB("darkolivegreen4"))
-p1 <- plot_geo(locationmode = 'USA-states') %>%
-   add_markers(data = sealsT, x= ~end_long, y = ~end_lat, #type = 'scatter',
-               marker=list(symbol=I(4),alpha = 0.1,color="blue", size=3)) %>% #
-   add_segments(data =sealsT,x = ~long, xend = ~end_long,
-                y = ~lat, yend = ~end_lat, color=I("blue"),alpha=1) %>%
-      #  size = I(1) ,alpha = 0.3
-   layout(title = 'Vector field of seal movements',geo = geo1, showlegend = FALSE)
-p1
-```
+<!-- ```{r vector_field,results='asis',message=FALSE,warning=FALSE,fig.height=5,fig.width=5} -->
+<!-- geo1 <- list(scope = 'north america', projection = list(type = 'natural earth'), -->
+<!--    showland = TRUE,landcolor = toRGB("darkolivegreen4")) -->
+<!-- p1 <- plot_geo(locationmode = 'USA-states') %>% -->
+<!--    add_markers(data = sealsT, x= ~end_long, y = ~end_lat, #type = 'scatter', -->
+<!--                marker=list(symbol=I(4),alpha = 0.1,color="blue", size=3)) %>% # -->
+<!--    add_segments(data =sealsT,x = ~long, xend = ~end_long, -->
+<!--                 y = ~lat, yend = ~end_lat, color=I("blue"),alpha=1) %>% -->
+<!--       #  size = I(1) ,alpha = 0.3 -->
+<!--    layout(title = 'Vector field of seal movements',geo = geo1, showlegend = FALSE) -->
+<!-- p1 -->
+<!-- ``` -->
 
 
-## Countour plot
+## Contour plot
 
 
 
@@ -66,14 +65,15 @@ p3<-plot_ly(data=sealsT, x = ~long, y = ~lat,
 p3
 ```
 
-bla
+
+The grid had 21 points for the latitude and 55 points for the longitude.
 
 The magnitude of the displacement is color-coded on the longitude-latitude grid 
 with added contour lines.
 
-Overall the displacement increase going towards the south-east corner of the grid.
+Overall the displacement increases in the south-east direction.
 
-bla
+
 
 </div>
 
