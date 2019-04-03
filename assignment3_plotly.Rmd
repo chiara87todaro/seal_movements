@@ -1,8 +1,10 @@
 ---
 title: "Vector field of seal movements"
 author: "Chiara Todaro"
-date: "2 April 2019"
-output: ioslides_presentation
+date: "3 April 2019"
+output:
+  ioslides_presentation: default
+  beamer_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -29,26 +31,26 @@ sealsT<-mutate(seals,end_lat=lat+delta_lat,end_long=long+delta_long, #deltas=del
 
 ```
 
-Basically it's the vector field representation of seal movements in the Pacific Ocean.
+It represents the vector field of seal movements in the Pacific Ocean.
 
 * The **long** and **lat** variables represent the x and y coordinates of a grid where the 
 measurements are taken. 
 * The **delta_long** and **delta_lat** variables represent the x and y components of the displacement vector.
 
-<!-- ## Vector field -->
+## Vector field
 
-<!-- ```{r vector_field,results='asis',message=FALSE,warning=FALSE,fig.height=5,fig.width=5} -->
-<!-- geo1 <- list(scope = 'north america', projection = list(type = 'natural earth'), -->
-<!--    showland = TRUE,landcolor = toRGB("darkolivegreen4")) -->
-<!-- p1 <- plot_geo(locationmode = 'USA-states') %>% -->
-<!--    add_markers(data = sealsT, x= ~end_long, y = ~end_lat, #type = 'scatter', -->
-<!--                marker=list(symbol=I(4),alpha = 0.1,color="blue", size=3)) %>% # -->
-<!--    add_segments(data =sealsT,x = ~long, xend = ~end_long, -->
-<!--                 y = ~lat, yend = ~end_lat, color=I("blue"),alpha=1) %>% -->
-<!--       #  size = I(1) ,alpha = 0.3 -->
-<!--    layout(title = 'Vector field of seal movements',geo = geo1, showlegend = FALSE) -->
-<!-- p1 -->
-<!-- ``` -->
+```{r vector_field,message=FALSE,warning=FALSE,fig.height=6.5,fig.width=6.5,fig.align="center"}
+geo1 <- list(scope = 'north america', projection = list(type = 'natural earth'),
+   showland = TRUE,landcolor = toRGB("darkolivegreen4"))
+p1 <- plot_geo(locationmode = 'USA-states') %>%
+   add_markers(data = sealsT, x= ~end_long, y = ~end_lat, #type = 'scatter',
+               marker=list(symbol=I(4),alpha = 0.1,color="blue", size=3)) %>% #
+   add_segments(data =sealsT,x = ~long, xend = ~end_long,
+                y = ~lat, yend = ~end_lat, color=I("blue"),alpha=1) %>%
+      #  size = I(1) ,alpha = 0.3
+   layout(title = 'Vector field of seal movements',geo = geo1, showlegend = FALSE)
+p1
+```
 
 
 ## Contour plot
@@ -72,7 +74,6 @@ The magnitude of the displacement is color-coded on the longitude-latitude grid
 with added contour lines.
 
 Overall the displacement increases in the south-east direction.
-
 
 
 </div>
@@ -114,7 +115,7 @@ Mean displacement for fixed longitude and latitude.
 Colors code the mean longitude and latitude components of the mean displacement.
 
 
-Notice from the sign of the colors that the movement go from 45 to 30 
+Notice from the sign of the color that the movement go from 45 to 30 
 degrees of latitude, and from -120 to -180 degrees of longitude. 
 On the latitude the displacement magnitude increase linearly, while 
 there is an increase/decrease around -135 degrees on the longitude.
